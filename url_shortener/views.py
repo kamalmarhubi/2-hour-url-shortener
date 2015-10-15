@@ -2,6 +2,7 @@ from url_shortener import app
 import sqlite3
 from flask import request
 from flask import g
+from flask import url_for
 from flask import render_template
 from flask import redirect
 import base64
@@ -70,4 +71,4 @@ def new_link():
     short_url = get_id()
     db.cursor().execute("insert into links(short, long) values (?, ?)", (short_url, url))
     db.commit()
-    return short_url
+    return render_template('created.html', url_for(redir_short_url, short_url=short_url, _external=True))
