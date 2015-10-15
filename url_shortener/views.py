@@ -9,6 +9,7 @@ import struct
 import random
 import sys
 
+
 def get_id():
     n = random.randint(0, sys.maxint)
     s = struct.pack(">Q", n)
@@ -16,7 +17,7 @@ def get_id():
 
 
 def connect_db():
-        return sqlite3.connect(app.config['DATABASE'])
+    return sqlite3.connect(app.config['DATABASE'])
 
 
 def query_db(query, args=(), one=False):
@@ -40,9 +41,11 @@ def close_connection(exception):
     if db is not None:
         db.close()
 
+
 @app.errorhandler(404)
 def not_found():
     return 'not found', 404
+
 
 @app.route("/<short_url>")
 def redir_short_url(short_url):
