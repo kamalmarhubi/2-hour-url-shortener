@@ -57,9 +57,8 @@ def redir_short_url(short_url):
 
 
 @app.route("/")
-def hello():
-    db = get_db()
-    return "Hello World!"
+def home():
+    return render_template('home.html')
 
 
 @app.route("/links", methods=['POST'])
